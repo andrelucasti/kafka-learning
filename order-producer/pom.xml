@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>kafka-learning</artifactId>
+	<artifactId>order-producer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-learning</name>
-	<description>Kafka learning</description>
+	<name>order-producer</name>
+	<description>order producer</description>
 
 	<properties>
 		<java.version>11</java.version>

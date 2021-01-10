@@ -1,4 +1,4 @@
-package com.andrelucasdeveloper.kafkalearning.consumer;
+package com.andrelucasdeveloper.kafkalearning.order;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.slf4j.Logger;
@@ -8,14 +8,17 @@ import org.springframework.stereotype.Service;
 import java.time.Duration;
 
 @Service
-public class LearningHandler {
-    protected static final Logger LOGGER = LoggerFactory.getLogger(LearningHandler.class);
+public class OrderCreationConsumer {
+    protected static final Logger LOGGER = LoggerFactory.getLogger(OrderCreationConsumer.class);
+
     private Consumer<String, String> kafkaConsumer;
+    private OrderService orderService;
 
-    public LearningHandler(final Consumer<String, String> kafkaConsumer) {
+    public OrderCreationConsumer(final Consumer<String, String> kafkaConsumer,
+                                 final OrderService orderService) {
         this.kafkaConsumer = kafkaConsumer;
+        this.orderService = orderService;
     }
-
 
     public void execute(){
         while (true)
@@ -33,6 +36,8 @@ public class LearningHandler {
                 LOGGER.info(messageSuccess);
                 LOGGER.info(record.key());
                 LOGGER.info(record.value());
+
+                orderService.saveOrdersAvailableToNewTrip();
             }
         }
     }

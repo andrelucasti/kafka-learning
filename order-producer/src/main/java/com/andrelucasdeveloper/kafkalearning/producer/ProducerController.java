@@ -24,7 +24,7 @@ public class ProducerController {
     @PostMapping
     public void sendMessage(@RequestBody final String message) {
         final var key = UUID.randomUUID();
-        final var producerRecord = new ProducerRecord<>("MY_FIRST_TOPIC_IN_JAVA", key.toString(), message);
+        final var producerRecord = new ProducerRecord<>("NEW_ORDER", key.toString(), message);
 
         kafkaProducer.send(producerRecord, (recordMetadata, e) -> {
             if(e != null){

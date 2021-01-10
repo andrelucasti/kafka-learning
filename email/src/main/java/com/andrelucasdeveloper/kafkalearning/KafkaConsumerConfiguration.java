@@ -1,5 +1,4 @@
-package com.andrelucasdeveloper.kafkalearning.consumer;
-
+package com.andrelucasdeveloper.kafkalearning;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -17,7 +16,7 @@ public class KafkaConsumerConfiguration {
     @Bean("kafkaConsumer")
     public Consumer<String, String> kafkaConsumer(){
         final var consumer = new KafkaConsumer<String, String>(properties());
-        consumer.subscribe(Collections.singleton("MY_FIRST_TOPIC_IN_JAVA"));
+        consumer.subscribe(Collections.singleton("NEW_ORDER"));
         return consumer;
     }
 
@@ -27,7 +26,7 @@ public class KafkaConsumerConfiguration {
         properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "group-kafka-learning");//the group name is based in the service name or project name...
+        properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "group-email");//the group name is based in the service name or project name...
         return properties;
     }
 }

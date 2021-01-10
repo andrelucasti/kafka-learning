@@ -1,24 +1,23 @@
 package com.andrelucasdeveloper.kafkalearning;
 
-import com.andrelucasdeveloper.kafkalearning.consumer.LearningHandler;
-import org.apache.kafka.clients.consumer.Consumer;
+import com.andrelucasdeveloper.kafkalearning.order.OrderCreationConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KafkaLearningApplication implements CommandLineRunner {
+public class RouteManagerApplication implements CommandLineRunner {
 
 	@Autowired
-	private LearningHandler learningHandler;
+	private OrderCreationConsumer orderCreationConsumer;
 
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaLearningApplication.class, args);
+		SpringApplication.run(RouteManagerApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		learningHandler.execute();
+		orderCreationConsumer.execute();
 	}
 }
